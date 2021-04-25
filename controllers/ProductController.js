@@ -118,7 +118,8 @@ $scope.MainChange=()=>{
 }
 
 $scope.updateProduct = (product) =>{
-    if(product && product.p_name && product.p_category_name, product.p_description, product.p_price, product.p_stock){
+    console.log(product);
+    if(product && product.p_name && product.p_category_name, product.p_description, product.p_price){
         
         var formData = new FormData();
         formData.append("p_id", product.p_id);
