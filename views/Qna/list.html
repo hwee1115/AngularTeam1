@@ -14,10 +14,10 @@
 </style>
 
   <div>
-     <select style="margin-left: 20px;" ng-model="categoryVal">
+     <select style="margin-left: 20px;" ng-model="categoryVal2">
       <option ng-repeat="category in categoryList">{{category}}</option>
     </select> 
-    <button class="btn btn-sm btn-outline-dark" style="line-height: 1.0" ng-click="search(categoryVal)">조회</button>
+    <button class="btn btn-sm btn-outline-dark" style="line-height: 1.0" ng-click="search(categoryVal2)">조회</button>
   </div>
   <div class="card-body">
     <div>
@@ -41,7 +41,7 @@
           
       
         </table>
-          <div style="margin-top: 20px; text-align: center;">
+          <div ng-if="show" style="margin-top: 20px; text-align: center;">
                 <button class="btn btn-light btn-sm" 
                             ng-click="getList(1, categoryVal)"><<</button>
                 <button   class="btn btn-light btn-sm" 
@@ -56,7 +56,8 @@
                 <button class="btn btn-light btn-sm" 
                             ng-click="getList(pager.totalPageNo, categoryVal)">>></button>
 
-                          </div>
+          </div>
+          <span ng-if="!show">검색 결과가 없습니다.</span>
       
     </div>
   </div>

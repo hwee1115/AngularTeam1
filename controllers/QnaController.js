@@ -1,6 +1,6 @@
 angular.module("app")
 .controller("QnaController", function($scope, QnaService, $rootScope) { 
-
+  $scope.show = true;
   $scope.$on("$routeChangeSuccess", () => {
     $scope.getList(1, "");
   });
@@ -8,6 +8,7 @@ angular.module("app")
   $scope.getView = () => {
     switch($scope.view) {
       case "list": return "views/Qna/list.html"
+      case "noList": return "views/Qna/noList.html"
       case "read": return "views/Qna/read.html"
       case "update": return "views/Qna/update.html"
     }
@@ -23,7 +24,13 @@ angular.module("app")
       for(var i=$scope.pager.startPageNo; i<=$scope.pager.endPageNo; i++){
         $scope.pageRange.push(i);
       }
-      $scope.view = "list";
+
+      if($scope.qnas.length===0){
+       $scope.show=false;
+      }else if($scope.qnas.length>=1){
+        $scope.show=true;
+        $scope.view = "list";
+      }
     });
   };
 
@@ -61,14 +68,14 @@ angular.module("app")
   $scope.deleteQna = (qa_id) => {
     QnaService.delete(qa_id)
         .then((response) => {
-          $scope.getList(1); //1페이지로 돌아옴
+          $scope.getList($scope.pager.pageNo, $scope.categoryVal); 
           $scope.view = "list";
         });
     };
 
 
   $scope.categoryList = ["전체", "배송 문의", "주문/결제 문의", "상품 문의", "답변 대기", "답변 완료"];
-  $scope.categoryVal = "전체";
+  $scope.categoryVal2 = "전체";
   // $scope.getCategoryVal = (categoryVal) => {
   //   if(categoryVal === "전체" || categoryVal === ""){
   //     return $scope.categoryVal = "";
@@ -77,7 +84,8 @@ angular.module("app")
   //   }
   // };
 
-  $scope.search = (selectCategory) => {
-    $scope.getList(1, selectCategory);
+  $scope.search = (categoryVal2) => {
+    $scope.categoryVal =categoryVal2;
+    $scope.getList(1, categoryVal2);
   }
 });
