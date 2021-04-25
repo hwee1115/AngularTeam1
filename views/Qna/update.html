@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-header">
+     update.html
+  </div>
+
+    <div class="card-body">
+      <div class="form-group">
+        <label>번호:</label>
+        <input class="form-control" ng-value="qna.qa_id"/>
+      </div>
+      <div class="form-group">
+        <label>분류:</label>
+        <input class="form-control" ng-value="qna.qa_category" readonly/>
+      </div>
+      <div class="form-group">
+        <label>유저ID:</label>
+        <input class="form-control" ng-value="qna.user_id" readonly/>
+      </div>
+      <div class="form-group">
+        <label>상태:</label>
+        <input class="form-control" ng-value="qna.qa_status" readonly/>
+      </div>
+      <div class="form-group">
+       <label>날짜:</label>
+        <input class="form-control" value="{{ qna.qa_date | date: 'yyyy-MM-dd' }}" readonly/>
+      </div>
+      <div class="form-group">
+        <label>질문 내용:</label>
+        <textarea class="form-control" ng-value="qna.qa_content" readonly></textarea>
+      </div>
+       <div class="form-group">
+        <label>답변 작성자:</label>
+         <input class="form-control" ng-value="uid" readonly/>
+      </div>
+       <div class="form-group">
+         <label>답변 내용:</label>
+        <textarea class="form-control" ng-model="qna.qa_answer"></textarea>
+      </div>
+          <button class="btn btn-primary btn-sm" ng-click="updateQna(qna)">수정</button>
+          <button class="btn btn-primary btn-sm" ng-click="cancel()">취소</button>        
+      </div>
+  </div>
+</div>

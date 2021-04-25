@@ -1,0 +1,51 @@
+<div class="card">
+    <div class="card-header">
+        {{product.p_name}} - {{product.p_category_name}}
+    </div>
+    <div class="card-body">
+        <div>
+            <div class="form-group">
+                <label>업로드 날짜:</label>
+                <input class="form-control" ng-value="product.p_upload_date | date:'yyyy-MM-dd' " readonly/>
+            </div>
+            <div class="form-group">
+                <label>상품설명:</label>
+                <textarea class="form-control" ng-value="product.p_description" readonly></textarea>
+            </div>
+            <div class="form-group">
+                <label>상품가격:</label>
+                <input class="form-control" ng-value="product.p_price" readonly/>
+            </div>
+            <div class="form-group">
+                <label>재고수량:</label>
+                <input class="form-control" ng-value="product.p_stock" readonly/>
+            </div>
+            <div class="form-group">
+                <label>메인사진:</label>
+                <a ng-hide="mainphoto == null" href="">
+                    {{mainphoto.photo_sname}}</br>
+                    <img src="{{GetPhoto('Main',mainphoto.photo_sname,mainphoto.photo_type)}}" width="200"/>
+                </a>
+            </div>
+            <div class="form-group">
+                <label>서브사진:</label>
+                <a ng-hide="subphotos.length == 0" href="">
+                    <div ng-repeat="subphoto in subphotos">
+                    {{subphoto.photo_sname}}</br>
+                    <img src="{{GetPhoto('Sub',subphoto.photo_sname,subphoto.photo_type)}}" width="200"/>
+                    </div>
+                </a>
+            </div>
+            <div class="form-group">
+                <label>세부사진:</label>
+                <a ng-hide="detailphoto == null" href="">
+                    {{detailphoto.photo_sname}}</br>
+                    <img src="{{GetPhoto('Detail',detailphoto.photo_sname,detailphoto.photo_type)}}" width="200"/>
+                </a>
+            </div>
+            <button class="btn btn-primary btn-sm" ng-click="getList(pager.pageNo)">목록</button>
+            <button class="btn btn-primary btn-sm" ng-show="uid" ng-click="updateProductForm()">수정</button> 
+            <button class="btn btn-primary btn-sm" ng-show="uid" ng-click="deleteProduct(product.pid)">삭제</button>       
+        </div>
+    </div>
+</div>

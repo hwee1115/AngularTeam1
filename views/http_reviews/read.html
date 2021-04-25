@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header">
+        read.html
+    </div>
+
+    <div class="card-body">
+        <div>
+            <div class="form-group">
+                <label>리뷰번호</label>
+                <input class="form-control" ng-value="review.review_id" readonly />
+                <!--<input class="form-control" value="{{product.name}}" readonly />-->
+            </div>
+            <!-- <div class="form-group">
+                <label>글쓴이:</label>
+                <input class="form-control" ng-value="product.bwriter" readonly />
+            </div> -->
+            <div class="form-group">
+                <label>리뷰점수</label>
+                <input class="form-control" ng-value="review.review_score" readonly></input>
+            </div>
+            <div class="form-group">
+                <label>리뷰제목</label>
+                <input class="form-control" ng-value="review.review_title" readonly></input>
+            </div>
+
+            <div class="form-group">
+                <label>리뷰내용</label>
+                <input class="form-control" ng-value="review.review_content" readonly></input>
+            </div>
+
+            <div class="form-group">
+                <label>리뷰날짜</label>
+                <input class="form-control" ng-value="review.review_date" readonly></textinputarea>
+            </div>
+
+            <div class="form-group">
+                <label>작성자아이디</label>
+                <input class="form-control" ng-value="review.user_id" readonly></textinputarea>
+            </div>
+
+            <button class="btn btn-primary btn-sm" ng-click="getList(pager.pageNo)">목록</button>
+            <button ng-show="uid" class="btn btn-danger btn-sm" ng-click="updateReviewForm()">비공개</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,133 @@
+<h7 class="ordersTitle">주문 상세 정보</h7>
+                        <div class="orders">
+                            <div class="orders-inner" style="background-color: rgba(244,244,245,1);">
+                                <div class="orders-top">
+                                    <div class="topContents">주문일자: {{order.order_date | date:"yyyy.MM.dd"}}</div>
+                                    <div class="topContents">주문번호:{{order.order_id}}</div>
+                                </div>
+                            </div>
+                            <div class="orders-info">
+                                <div class="orders-inner">
+                                    <div class="info-container">
+                                        <dl class="info1">
+                                            <dt class="info-detail">받는 사람</dt>
+                                            <dd class="data-name">{{order.order_name}}</dd>
+                                        </dl>
+                                        <dl class="info1">
+                                            <dt class="info-detail">휴대전화</dt>
+                                            <dd class="data-name">{{order.order_phone}}</dd>
+                                        </dl>
+                                        <dl class="info1">
+                                            <dt class="info-detail">배송주소</dt>
+                                            <dd class="data-name">{{order.delivery_address}} {{order.delivery_address_detail}}</dd>
+                                        </dl>
+                                        <dl class="info1">
+                                            <dt class="info-detail">배송 요청사항</dt>
+                                            <dd class="data-name">{{order.order_request}}</dd>
+                                        </dl>
+                                        <dl class="info1">
+                                          <dt class="info-detail">배송상태</dt>
+                                          <dd class="data-name" ng-show="show">{{order.delivery_status}}
+                                          <button type="button" ng-click="toggle()" class="btn btn-light btn-sm ml-3">수정</button></dd>
+                                          <dd class="data-name" ng-show="!show">
+                                           
+                                              <input name="status" type="radio" value="배송준비중" ng-model="status" />배송준비중
+                                              <input name="status" type="radio" value="배송완료"  ng-model="status" />배송완료
+                                              <input name="status" type="radio" value="취소 중"  ng-model="status" />취소 중
+                                              <input name="status" type="radio" value="취소완료"  ng-model="status" />취소완료
+                                            
+                                            <button type="button" ng-click="changeStatus(order,status,keyword)" class="btn btn-light btn-sm ml-3">저장</button></dd>
+                                      </dl>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="orders-detail">
+                                <div class="orders-inner">
+                                    <div class="orders-table" style="margin: 35px 0;">
+                                        <div class="row trow">
+                                          <div class="col-3 tname">
+                                            총 상품 금액
+                                          </div>
+                                          <div class="col-9 tdata">
+                                            {{order.order_sprice}}원
+                                          </div>
+                                        </div>
+                                        <div class="row trow">
+                                          <div class="col-3 tname">
+                                            배송비
+                                          </div>
+                                          <div class="col-9 tdata">
+                                            3000원
+                                          </div>
+                                        </div>
+                                        <div class="row trow">
+                                            <div class="col-3 tname">
+                                              쿠폰
+                                            </div>
+                                            <div class="col-9 tdata">
+                                              0원
+                                            </div>
+                                          </div>
+                                        <div class="row trow">
+                                            <div class="col-3 tname">
+                                              보유 현금
+                                            </div>
+                                            <div class="col-9 tdata">
+                                              0원
+                                            </div>
+                                        </div>
+                                        <div class="row trow">
+                                            <div class="col-3 tname">
+                                              결제방법
+                                            </div>
+                                            <div class="col-9 tdata">
+                                              {{order.payment}}
+                                            </div>
+                                        </div>
+                                        <div class="row trow">
+                                            <div class="col-3 tname">
+                                             총 결제금액
+                                            </div>
+                                            <div class="col-9 tdata">
+                                              {{order.total_price}}원
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="orders-list">
+                              <div class="orders-inner" style="background-color: rgba(244,244,245,1);">
+                                  <div class="orders-bottom">
+                                      발송상품
+                                  </div>
+       
+                              </div>
+                              <div class="orders-inner2">
+                                  <table class="table">
+                                  
+                                      <tbody>
+                                          
+                                          <tr ng-repeat="orderProduct in orderProducts">
+                                            <td style="border-top:none; border-right:none; border-bottom:1px solid;"> 
+                                                  <div style="font-size: 15px; font-weight: 700;">상품번호: {{orderProduct.p_id}}</div>
+                                                  <div style="font-size: 15px; font-weight: 700;">상품이름: {{orderProduct.p_name}}</div>
+                                                  <div style="font-size: 13px; font-weight: bold; ">가격: {{orderProduct.p_price}}원</div> 
+                                                  <div style="font-size: 13px;">수량: {{orderProduct.amount}}개</div>
+                                              </td>
+                                          </tr>
+
+                                        
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="text-align: center;">
+                       
+                      
+                        <button type="button" ng-click="getList(pager.pageNo,keyword)" class="btn btn-primary btn-lg" style="background-color: #FF3357; border-color: black;">주문리스트 이동</button>
+                    </div>
+                        
+                    

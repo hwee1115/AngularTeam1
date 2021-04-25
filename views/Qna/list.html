@@ -1,0 +1,63 @@
+<style>
+  .fail-class{
+    color: red;
+  }
+  .success-class{
+    color: #37b24d;
+  }
+
+  a { 
+    color: black; text-decoration: none;
+    cursor:pointer;
+  }
+
+</style>
+
+  <div>
+     <select style="margin-left: 20px;" ng-model="categoryVal">
+      <option ng-repeat="category in categoryList">{{category}}</option>
+    </select> 
+    <button class="btn btn-sm btn-outline-dark" style="line-height: 1.0" ng-click="search(categoryVal)">조회</button>
+  </div>
+  <div class="card-body">
+    <div>
+      <table class="table">
+        <thead class="thead-light">
+          <tr style="text-align: center;">
+              <th>번호</th>
+              <th>문의 유형</th>
+              <th>유저ID</th>
+              <th>답변 상태</th>
+              <th>문의 날짜</th>
+          </tr>
+        </thead>
+          <tr ng-repeat="qna in qnas" style="text-align: center;"> 
+              <td>{{qna.qa_id}}</td>
+              <td><a ng-click="read(qna.qa_id, categoryVal)">{{qna.qa_category}}</a></td> 
+              <td>{{qna.user_id}}</td>
+              <td ng-class="{'fail-class': qna.qa_status==='답변 대기', 'success-class': qna.qa_status==='답변 완료'}">{{qna.qa_status}}</td>
+              <td>{{qna.qa_date | date:"yyyy.MM.dd"}}</td>
+          </tr>
+          
+      
+        </table>
+          <div style="margin-top: 20px; text-align: center;">
+                <button class="btn btn-light btn-sm" 
+                            ng-click="getList(1, categoryVal)"><<</button>
+                <button   class="btn btn-light btn-sm" 
+                            ng-show="pager.groupNo>1" 
+                            ng-click="getList(pager.startPageNo-1, categoryVal)">이전</button>
+                <button ng-repeat="i in pageRange"
+                          class="btn btn-sm {{(pager.pageNo==i)?'btn-danger':'btn-light'}} {{!$last?'mr-1':''}}" 
+                            ng-click="getList(i, categoryVal)">{{i}}</button>
+                <button   class="btn btn-light btn-sm" 
+                            ng-show="pager.groupNo < pager.totalGroupNo" 
+                            ng-click="getList(pager.endPageNo+1, categoryVal)">다음</button>
+                <button class="btn btn-light btn-sm" 
+                            ng-click="getList(pager.totalPageNo, categoryVal)">>></button>
+
+                          </div>
+      
+    </div>
+  </div>
+

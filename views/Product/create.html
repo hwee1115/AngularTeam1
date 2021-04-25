@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header">
+        create.html
+    </div>
+    <div class="card-body">
+        <div>
+            <div class="form-group">
+                <label>상품이름:</label>
+                <input class="form-control" ng-model="product.p_name" />
+            </div>
+            <div class="form-group">
+                <label>상품설명:</label>
+                <textarea class="form-control" ng-model="product.p_description" ></textarea>
+            </div>
+            <div class="form-group">
+                <label>카테고리:</label>
+                <input class="form-control" ng-model="product.p_category_name"/>
+            </div>
+            <div class="form-group">
+                <label>상품가격:</label>
+                <input class="form-control" ng-model="product.p_price"></input>
+            </div>
+            <div class="form-group">
+                <label>상품재고:</label>
+                <input class="form-control" ng-model="product.p_stock"></input>
+            </div>
+            <div class="form-group">
+                <label>메인사진 첨부:</label>
+                <input id="pmainphoto" type="file" class="form-control-file" />
+            </div>
+            <div class="form-group">
+                <label>서브사진 첨부:</label>
+                <input id="psubphotos" type="file" class="form-control-file" multiple/>
+            </div>
+            <div class="form-group">
+                <label>디테일사진 첨부:</label>
+                <input id="pdetailphoto" type="file" class="form-control-file" />
+            </div>
+            <button class="btn btn-primary btn-sm" ng-click="createProduct(product)">등록</button>
+            <button class="btn btn-primary btn-sm" ng-click="cancel()">취소</button>        
+        </div>
+    </div>
+</div>
