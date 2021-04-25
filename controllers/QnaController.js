@@ -58,7 +58,7 @@ angular.module("app")
     }
   };
 
-  $scope.deleteBoard = (qa_id) => {
+  $scope.deleteQna = (qa_id) => {
     QnaService.delete(qa_id)
         .then((response) => {
           $scope.getList(1); //1페이지로 돌아옴
