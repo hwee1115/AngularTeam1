@@ -31,8 +31,8 @@
                 <img src="{{GetPhoto('Main',mainphoto.photo_sname,mainphoto.photo_type)}}" width="200"/>
                 </a>
                 <input id="pmainphoto" type="file" class="form-control-file" />
-                
             </div>
+        </br>
             <div class="form-group">
                 <label>서브사진 첨부:</label></br>
                 <div ng-repeat="subphoto in subphotos">
@@ -42,9 +42,9 @@
                     <img src="{{GetPhoto('Sub',subphoto.photo_sname,subphoto.photo_type)}}" width="200"/>        
                     </a>
                 </div>
-                
                 <input id="psubphotos" type="file" class="form-control-file"  multiple/>
             </div>
+        </br>
             <div class="form-group">
                 <label>디테일사진 첨부:</label></br>
                 <a ng-hide="detailphoto == null" href="">
