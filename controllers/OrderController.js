@@ -28,6 +28,7 @@ angular.module("app")
                 $scope.pageRange.push(i)
             }
             if($scope.orders.length===0){
+              
               $scope.view="nosearch";
             }else if($scope.orders.length>=1){
               $scope.view = "list";
