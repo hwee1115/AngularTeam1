@@ -29,7 +29,7 @@ angular.module("app")
                 return "http://localhost:8080/resource/GetPhoto/"+photoCategory+"/"+photo_sname+"/"+photo_type;
             },
             GetCountSort:function(countSort){
-                const promise = $http.Get(BASE_URL + "/"+"CountSort"+"/"+ countSort);
+                const promise = $http.get(BASE_URL + "/"+"CountSort"+"/"+ countSort);
                 return promise;
             },
 
