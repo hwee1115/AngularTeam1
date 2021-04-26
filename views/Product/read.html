@@ -20,6 +20,10 @@
                 <label>재고수량:</label>
                 <input class="form-control" ng-value="product.p_stock" readonly/>
             </div>
+            상품의 사이즈:
+            <span class="form-group" ng-repeat="size in sizelist">
+                {{size.p_size}}
+            </span>
             <div class="form-group">
                 <label>메인사진:</label></br>
                 <a ng-hide="mainphoto == null" href="">
