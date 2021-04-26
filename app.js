@@ -30,7 +30,8 @@ angular.module("app",["ngRoute"])
     })
 
     //중첩된 컨트롤러 범위에서 사용할 수 있는 상태 데이터 및 함수
-    .controller("mainController", function($rootScope,$scope,$location,$route){
+    .controller("mainController", function($rootScope,$scope,$location,$route,ProductsService){
+        console.log("Ddd")
         $scope.logout = () =>{
             $rootScope.uid="";
             $rootScope.authToken = "";
@@ -43,6 +44,14 @@ angular.module("app",["ngRoute"])
             console.log(message);
             $rootScope.uid= message.uid;
         })
+        $scope.$on("$routeChangeSuccess", () => {
+            ProductsService.GetCountSort("재고부족")
+            .then((response)=>{
+            $scope.pcount = response.data;
+      
+     
+    })
+          });
 
         $scope.$on("logout",(event, message)=>{
             console.log("mainController가 logout 방송 수신함");

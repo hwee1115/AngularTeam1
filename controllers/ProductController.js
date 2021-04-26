@@ -3,7 +3,7 @@ angular.module("app")
      $scope.$on("$routeChangeSuccess", () => {
         $scope.getList(1,$scope.optionVal);
     });
-
+   
     $scope.view="list";
     $scope.getView = () => {
       switch($scope.view){
@@ -20,10 +20,21 @@ angular.module("app")
         $scope.getList($scope.pager.pageNo,optionVal);    
   }
 
-
+  $scope.size = {
+    S:false,
+    M:false,
+    L:false,
+    XL:false,
+    doubleXL:false
+};
     $scope.createProductForm = () => {
-      $scope.product=null;
-      $scope.view = "create"
+    $scope.product=null;
+    $scope.size.S=false;
+    $scope.size.M=false;
+    $scope.size.L=false;
+    $scope.size.XL=false;
+    $scope.size.doubleXL=false;
+      $scope.view = "create";
   };
 
   $scope.getList = (pageNo,optionVal) => {
@@ -65,6 +76,7 @@ $scope.read = (pid) =>{
         $scope.subphotos = null;
         $scope.detailphoto = null;
           $scope.product = response.data; 
+          $scope.sizelist = response.data.sizelist;
           var subPhotos = [];
           for(var i=0; i< $scope.product.photolist.length; i++){
             if($scope.product.photolist[i].photo_role === "main"){
@@ -93,6 +105,13 @@ $scope.updateProductForm = (pid) =>{
             $scope.subphotos = null;
             $scope.detailphoto = null;
           $scope.product = response.data;
+          $scope.sizelist = response.data.sizelist;
+          $scope.size.S=false;
+          $scope.size.M=false;
+          $scope.size.L=false;
+          $scope.size.XL=false;
+          $scope.size.doubleXL=false;
+
           var subPhotos = [];
           for(var i=0; i< $scope.product.photolist.length; i++){
             if($scope.product.photolist[i].photo_role === "main"){
@@ -132,7 +151,13 @@ $scope.updateProduct = (product) =>{
         formData.append("p_price", product.p_price);
         
         formData.append("p_stock", product.p_stock);
-       
+
+        formData.append("p_size", $scope.size.S);
+        formData.append("p_size", $scope.size.M);
+        formData.append("p_size", $scope.size.L);
+        formData.append("p_size", $scope.size.XL);
+        formData.append("p_size", $scope.size.doubleXL);
+        
         var mainphoto = $("#pmainphoto")[0].files[0];
         console.log("mainphto!!");
         console.log(mainphoto);
@@ -193,6 +218,7 @@ $scope.GetPhoto = (photoCategory,photo_sname, photo_type) => {
     return ProductsService.GetPhoto(photoCategory,photo_sname, photo_type);
 };
 $scope.createProduct = (product) => {
+    console.log($scope.size.S);
     if(product && product.p_name && product.p_category_name, product.p_description, product.p_price, product.p_stock){
         
         var formData = new FormData();
@@ -206,6 +232,12 @@ $scope.createProduct = (product) => {
         
         formData.append("p_stock", product.p_stock);
 
+        formData.append("p_size", $scope.size.S);
+        formData.append("p_size", $scope.size.M);
+        formData.append("p_size", $scope.size.L);
+        formData.append("p_size", $scope.size.XL);
+        formData.append("p_size", $scope.size.doubleXL);
+        
         var mainphoto = $("#pmainphoto")[0].files[0];
         console.log(mainphoto);
         if(mainphoto){
