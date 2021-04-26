@@ -16,5 +16,9 @@ angular.module("app")
                 const promise = $http.put(BASE_URL,order);
                 return promise;
             },
+            getcount:function(){
+                const promise = $http.get(BASE_URL + "/" + "ordercount");
+                return promise;
+            }
         }
     });
