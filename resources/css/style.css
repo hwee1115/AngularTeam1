@@ -621,6 +621,12 @@ a {
     justify-content: space-between;
 }
 
+.login{
+    display:flex;
+    height:100vh;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
