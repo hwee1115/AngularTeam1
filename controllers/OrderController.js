@@ -1,12 +1,17 @@
 angular.module("app")
   .controller("OrderController", function ($scope,OrdersService,$rootScope,$route) {
     $scope.show = true;
+    $scope.pageShow=true;
     $scope.keyword="";
+    $scope.searchStatus=null;
+    $scope.dstatusList = ['전체','배송준비중','배송완료','취소 중','취소완료'];
+    $scope.dstatus='전체';
     $scope.toggle=()=>{
       $scope.show=!$scope.show;
     };
      $scope.$on("$routeChangeSuccess", () => {
-        $scope.getList(1,"");
+
+        $scope.getList(1,null,null);
     });
 
     $scope.view="list";
@@ -18,19 +23,28 @@ angular.module("app")
       }
   };
 
-  $scope.getList = (pageNo,keyword) => {
-    OrdersService.list(pageNo,keyword)
+  $scope.getList = (pageNo,keyword,searchStatus) => {
+    searchStatus = searchStatus===null?"전체":searchStatus;
+    $scope.dstatus=searchStatus; 
+   // $scope.dstatus = searchStatus;
+    console.log("dis : "+$scope.dstatus);
+    if(searchStatus==='전체'){
+      searchStatus=null;
+    }
+    OrdersService.list(pageNo,keyword,searchStatus)
         .then((response) => {
             $scope.pager = response.data.pager;
             $scope.orders = response.data.orders;
+            $scope.count = response.data.count;
             $scope.pageRange = [];
             for(var i=$scope.pager.startPageNo; i<=$scope.pager.endPageNo; i++){
                 $scope.pageRange.push(i)
             }
             if($scope.orders.length===0){
-              
-              $scope.view="nosearch";
+              $scope.pageShow=false;
+              $scope.view = "list";
             }else if($scope.orders.length>=1){
+              $scope.pageShow=true;
               $scope.view = "list";
             }
           
@@ -39,42 +53,49 @@ angular.module("app")
 
 
 
-$scope.deleteOrders = (order,keyword) =>{
+$scope.deleteOrders = (order,keyword,searchStatus) =>{
     $scope.keyword = keyword;
+    $scope.searchStatus=searchStatus;
     if(order){
       order.delivery_status="취소완료";
       OrdersService.update(order)
       .then((response)=>{
-        $scope.getList($scope.pager.pageNo,keyword);
+        $scope.getList($scope.pager.pageNo,keyword,searchStatus);
       })
     }  
   };
 
-  $scope.completeOrders = (order,keyword) =>{
+  $scope.completeOrders = (order,keyword,searchStatus) =>{
     $scope.keyword = keyword;
+    $scope.searchStatus=searchStatus;
     if(order){
       order.delivery_status="배송완료";
       OrdersService.update(order)
       .then((response)=>{
-        $scope.getList($scope.pager.pageNo,keyword);
+        $scope.getList($scope.pager.pageNo,keyword,searchStatus);
       })
     }  
   };
 
-   $scope.changeStatus = (order,status,keyword) =>{
-    if(order){
+   $scope.changeStatus = (order,status,keyword,searchStatus) =>{
+    if(status===undefined){
+     alert("저장할 값을 선택해주세요.")
+    }
+    if(status!==undefined){
       order.delivery_status=status;
       $scope.keyword = keyword;
+      $scope.searchStatus=searchStatus;
       OrdersService.update(order)
       .then((response)=>{
         $scope.toggle();
-        $scope.read(order.order_id,keyword);
+        $scope.read(order.order_id,keyword,searchStatus);
       })
     }  
   }; 
 
-  $scope.read = (order_id,keyword) =>{
+  $scope.read = (order_id,keyword,searchStatus) =>{
     $scope.keyword = keyword;
+    $scope.searchStatus=searchStatus;
     $scope.show = true;
     OrdersService.read(order_id)
         .then((response) => {
@@ -84,9 +105,10 @@ $scope.deleteOrders = (order,keyword) =>{
         });
     };
 
-  $scope.searchList = (searchword) =>{
+  $scope.searchList = (searchword,dstatus) =>{
     $scope.keyword = searchword;
-    $scope.getList(1,searchword);
+    $scope.searchStatus = dstatus;
+    $scope.getList(1,searchword,dstatus);
   }
 
  
