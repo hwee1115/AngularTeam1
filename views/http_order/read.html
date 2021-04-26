@@ -31,12 +31,12 @@
                                           <button type="button" ng-click="toggle()" class="btn btn-light btn-sm ml-3">수정</button></dd>
                                           <dd class="data-name" ng-show="!show">
                                            
-                                              <input name="status" type="radio" value="배송준비중" ng-model="status" />배송준비중
-                                              <input name="status" type="radio" value="배송완료"  ng-model="status" />배송완료
-                                              <input name="status" type="radio" value="취소 중"  ng-model="status" />취소 중
-                                              <input name="status" type="radio" value="취소완료"  ng-model="status" />취소완료
+                                              <input name="status" type="radio" value="배송준비중" ng-model="status" ng-required="!status"/>배송준비중
+                                              <input name="status" type="radio" value="배송완료"  ng-model="status" ng-required="!status"/>배송완료
+                                              <input name="status" type="radio" value="취소 중"  ng-model="status" ng-required="!status"/>취소 중
+                                              <input name="status" type="radio" value="취소완료"  ng-model="status" ng-required="!status"/>취소완료
                                             
-                                            <button type="button" ng-click="changeStatus(order,status,keyword)" class="btn btn-light btn-sm ml-3">저장</button></dd>
+                                            <button type="button" ng-click="changeStatus(order,status,keyword,searchStatus)" class="btn btn-light btn-sm ml-3">저장</button></dd>
                                       </dl>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
                       <div style="text-align: center;">
                        
                       
-                        <button type="button" ng-click="getList(pager.pageNo,keyword)" class="btn btn-primary btn-lg" style="background-color: #FF3357; border-color: black;">주문리스트 이동</button>
+                        <button type="button" ng-click="getList(pager.pageNo,keyword,searchStatus)" class="btn btn-primary btn-lg" style="background-color: #FF3357; border-color: black;">주문리스트 이동</button>
                     </div>
                         
                     
