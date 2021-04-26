@@ -30,7 +30,7 @@ angular.module("app",["ngRoute"])
     })
 
     //중첩된 컨트롤러 범위에서 사용할 수 있는 상태 데이터 및 함수
-    .controller("mainController", function($rootScope,$scope,$location,$route,ProductsService,OrdersService){
+    .controller("mainController", function($rootScope,$scope,$location,$route,ProductsService,OrdersService,QnaService){
         console.log("Ddd")
         $scope.logout = () =>{
             $rootScope.uid="";
@@ -48,14 +48,20 @@ angular.module("app",["ngRoute"])
             ProductsService.GetCountSort("재고부족")
             .then((response)=>{
             $scope.pcount = response.data;
-            
+            })
+
             OrdersService.getcount()
             .then((response)=>{
                 $scope.rcount = response.data;
                 console.log(response.data);
             })
-     
-    })
+
+            QnaService.readwait()
+            .then((response) => {
+                $scope.waitcount = response.data;
+                console.log(response.data);
+            })
+
           });
 
         $scope.$on("logout",(event, message)=>{
