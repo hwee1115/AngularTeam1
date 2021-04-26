@@ -35,7 +35,6 @@ angular.module("app")
             $scope.pager = response.data.pager;
             $scope.orders = response.data.orders;
             $scope.count = response.data.count;
-            $scope.rcount= response.data.rcount;
             $scope.pageRange = [];
             for(var i=$scope.pager.startPageNo; i<=$scope.pager.endPageNo; i++){
                 $scope.pageRange.push(i)
