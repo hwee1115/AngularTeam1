@@ -10,7 +10,6 @@ angular.module("app")
       $scope.show=!$scope.show;
     };
      $scope.$on("$routeChangeSuccess", () => {
-
         $scope.getList(1,null,null);
     });
 
