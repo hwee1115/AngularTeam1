@@ -14,41 +14,54 @@
     <div class="col-xs-8 col-md-8">
     <br/>
     <div class="table table-responsive">
+      <form name="QnaForm" novalidate>
         <table class="table">
-        <tr>
-            <th>글번호</th>
-            <td>{{qna.qa_id}}</td>
-            <th>문의 날짜</th>
-            <td>{{ qna.qa_date | date: 'yyyy-MM-dd' }}</td>
-        </tr>
-           
-         
-        <tr>
-            <th>유저ID</th>
-            <td>{{qna.user_id}}</td>
-            <th>문의 유형</th>
-            <td>{{qna.qa_category}}</td>
-        </tr>
-         
-        <tr>
-          <th>답변 상태</th>
-          <td ng-class="{'fail-class': qna.qa_status==='답변 대기', 'success-class': qna.qa_status==='답변 완료'}">{{qna.qa_status}}</td>
-          <th>답변 작성자</th>
-          <td>{{uid}}</td>
-      </tr>
-         
-        <tr>
-            <th>문의 내용</th>
-            <td colspan="3">{{qna.qa_content}}</td>
-        </tr>
-         
-        <tr>
-          <th>답변 내용</th>
-          <td colspan="3">
-            <textarea class="form-control" ng-model="qna.qa_answer"></textarea>
-          </td>
-      </tr>
+          
+            <tr>
+                <th>글번호</th>
+                <td>{{qna.qa_id}}</td>
+                <th>문의 날짜</th>
+                <td>{{ qna.qa_date | date: 'yyyy-MM-dd' }}</td>
+            </tr>
+              
+            
+            <tr>
+                <th>유저ID</th>
+                <td>{{qna.user_id}}</td>
+                <th>문의 유형</th>
+                <td>{{qna.qa_category}}</td>
+            </tr>
+            
+            <tr>
+              <th>답변 상태</th>
+              <td ng-class="{'fail-class': qna.qa_status==='답변 대기', 'success-class': qna.qa_status==='답변 완료'}">{{qna.qa_status}}</td>
+              <th>답변 작성자</th>
+              <td>{{uid}}</td>
+          </tr>
+            
+            <tr>
+                <th>문의 내용</th>
+                <td colspan="3">{{qna.qa_content}}</td>
+            </tr>
+          
+            <tr>
+              <th>답변 내용</th>
+              <td colspan="3">
+                <textarea name="content" type="text" class="form-control" 
+                          ng-model="qna.qa_answer" ng-required="true"
+                          ng-minlength="3"></textarea>
+                          <div class="error" ng-show="QnaForm.content.$invalid && QnaForm.content.$dirty">
+                            <span ng-show="QnaForm.content.$error.required">필수 입력 사항입니다.</span>
+                            <span ng-show="QnaForm.content.$error.minlength">2자 이상을 입력해주세요.</span>
+                          </div>
+              </td>
+            </tr>
+     
+           </div>
+       
       </table>
+
+    </form>
       <div class="text-center">
         <button class="btn btn-danger btn-sm" ng-click="updateQna(qna)">수정</button>
         <button class="btn btn-danger btn-sm" ng-click="cancel()">취소</button>    

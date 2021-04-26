@@ -19,6 +19,10 @@ angular.module("app")
       delete: function(qa_id) {
         const promise = $http.delete(BASE_URL + "/" + qa_id);
         return promise;
-      }
+      },
+      readwait:function(){
+        const promise = $http.get(BASE_URL + "/readwait" );
+        return promise;
+      },
     }
   }); 

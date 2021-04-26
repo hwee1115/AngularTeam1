@@ -13,14 +13,20 @@
 
 </style>
 
+<div class="card-body">
   <div>
-     <select style="margin-left: 20px;" ng-model="searchCategory">
-      <option ng-repeat="category in categoryList">{{category}}</option>
-    </select> 
-    <button class="btn btn-sm btn-outline-dark" style="line-height: 1.0" ng-click="search(searchCategory)">조회</button>
-  <span ng-if="count!=0" style="margin-left: 10px;">총 {{count}}개의 문의글이 있습니다.</span>
+  <div class="mb-3 searchBar">
+    <div>
+       <select style="height: 30px;" ng-model="searchCategory">
+       <option ng-repeat="category in categoryList">{{category}}</option>
+       </select> 
+       <button class="btn btn-sm btn-outline-dark" style="height: 30px;" ng-click="search(searchCategory)">조회</button>
+    </div>
+    <div>
+      <span ng-if="count!=0" style="color: red;">{{count}}</span>개의 문의글
+    </div>
   </div>
-  <div class="card-body">
+ 
     <div>
       <table class="table">
         <thead class="thead-light">
@@ -61,4 +67,4 @@
           <span ng-if="!show">조회된 내용이 없습니다.</span> 
     </div>
   </div>
-
+</div>

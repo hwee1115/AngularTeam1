@@ -80,4 +80,12 @@ angular.module("app")
     $scope.searchCategory = searchCategory;
     $scope.getList(1, searchCategory);
   }
+
+  //답변 대기 중인 문의글 수 가져오기
+  $scope.readwait = () => {
+    QnaService.readwait()
+    .then((response) => {
+      $scope.waitcount = response.data;
+    });
+  }
 });
