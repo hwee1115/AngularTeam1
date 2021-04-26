@@ -10,9 +10,9 @@ angular.module("app")
 
   $scope.getView = () => {
     switch($scope.view) {
-      case "list": return "views/Qna/list.html"
-      case "read": return "views/Qna/read.html"
-      case "update": return "views/Qna/update.html"
+      case "list": return "views/http_qna/list.html"
+      case "read": return "views/http_qna/read.html"
+      case "update": return "views/http_qna/update.html"
     }
   };
   

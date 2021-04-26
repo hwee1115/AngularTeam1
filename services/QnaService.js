@@ -1,7 +1,7 @@
 angular.module("app")
   .factory("QnaService", function($http) {
     //변수 선언
-    const BASE_URL = "http://localhost:8080/askList";
+    const BASE_URL = "http://localhost:8080/qna";
     //서비스 객체 리턴
     return {
       list: function(pageNo=1, qa_category) { 
