@@ -1,43 +1,61 @@
+<style>
+  .fail-class{
+    color: red;
+  }
+  .success-class{
+    color: #37b24d;
+  }
+</style>
+
 <div class="card">
 
-  <div class="card-body">
-    <div>
-      <div class="form-group">
-          <label>번호:</label>
-          <input class="form-control" ng-value="qna.qa_id" readonly/>
+  <div class="row">
+    <div class="col-xs-2 col-md-2"></div>
+    <div class="col-xs-8 col-md-8">
+    <br/>
+    <div class="table table-responsive">
+        <table class="table">
+          <tr>
+            <th>글번호</th>
+            <td>{{qna.qa_id}}</td>
+            <th>문의 날짜</th>
+            <td>{{ qna.qa_date | date: 'yyyy-MM-dd' }}</td>
+          </tr>
+            
+          
+          <tr>
+            <th>유저ID</th>
+            <td>{{qna.user_id}}</td>
+            <th>문의 유형</th>
+            <td>{{qna.qa_category}}</td>
+          </tr>
+          
+          <tr>
+            <th>답변 상태</th>
+            <td ng-class="{'fail-class': qna.qa_status==='답변 대기', 'success-class': qna.qa_status==='답변 완료'}">{{qna.qa_status}}</td>
+            <th>답변 작성자</th>
+            <td>{{qna.qa_admin}}</td>
+          </tr>
+          
+          <tr>
+            <th>문의 내용</th>
+            <td colspan="3">{{qna.qa_content}}</td>
+          </tr>
+          
+          <tr>
+            <th>답변 내용</th>
+            <td colspan="3">{{qna.qa_answer}}</td>
+          </tr>
+        </table>
+      <div class="text-center">
+      <button class="btn btn-danger btn-sm" ng-click="getList(pager.pageNo, categoryVal)">목록</button>
+      <button class="btn btn-danger btn-sm" ng-click="updateQnaForm()">수정</button> 
+      <button class="btn btn-danger btn-sm" ng-click="deleteQna(qna.qa_id)">삭제</button>       
       </div>
-      <div class="form-group">
-          <label>문의 유형:</label>
-          <input class="form-control" ng-value="qna.qa_category" readonly/>
-      </div>
-      <div class="form-group">
-          <label>유저ID:</label>
-          <input class="form-control" ng-value="qna.user_id" readonly/>
-      </div>
-      <div class="form-group">
-          <label>답변 상태:</label>
-          <input class="form-control" ng-value="qna.qa_status" readonly/>
-      </div>
-      <div class="form-group">
-        <label>문의 날짜:</label>
-        <input class="form-control" value="{{ qna.qa_date | date: 'yyyy-MM-dd' }}" readonly/>
-      </div>
-      <div class="form-group">
-        <label>문의 내용:</label>
-        <textarea class="form-control" ng-value="qna.qa_content" readonly></textarea>
-      </div>
-      <div class="form-group">
-        <label>답변 작성자:</label>
-        <input class="form-control" ng-value="qna.qa_admin" readonly/>
-      </div>
-      <div class="form-group">
-        <label>답변 내용:</label>
-        <textarea class="form-control" ng-value="qna.qa_answer" readonly></textarea>
-      </div>
-
-        <button class="btn btn-danger btn-sm" ng-click="getList(pager.pageNo, categoryVal)">목록</button>
-        <button class="btn btn-danger btn-sm" ng-click="updateQnaForm()">수정</button> 
-        <button class="btn btn-danger btn-sm" ng-click="deleteQna(qna.qa_id)">삭제</button>       
     </div>
   </div>
+</div>    
 </div>
+      
+  
+

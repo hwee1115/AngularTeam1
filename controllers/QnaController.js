@@ -1,6 +1,9 @@
 angular.module("app")
 .controller("QnaController", function($scope, QnaService, $rootScope) { 
   $scope.show = true;
+  $scope.categoryList = ["전체", "배송 문의", "주문/결제 문의", "상품 문의", "답변 대기", "답변 완료"];
+  $scope.searchCategory = "전체";
+
   $scope.$on("$routeChangeSuccess", () => {
     $scope.getList(1, "");
   });
@@ -8,7 +11,6 @@ angular.module("app")
   $scope.getView = () => {
     switch($scope.view) {
       case "list": return "views/Qna/list.html"
-      case "noList": return "views/Qna/noList.html"
       case "read": return "views/Qna/read.html"
       case "update": return "views/Qna/update.html"
     }
@@ -18,8 +20,8 @@ angular.module("app")
     QnaService.list(pageNo, qa_category)
     .then((response) => { //데이터가 성공적으로 오게 되면 response 객체 얻음
       $scope.pager = response.data.pager; //상태변수에 담음. 왜? 상태변수에 담지 않으면 바인딩을 할 수가 없음. 상태 변수에 반드시 저장!!!!
-      // $scope.categoryVal = qa_category;
       $scope.qnas = response.data.qnas;
+      $scope.count = response.data.count;
       $scope.pageRange = []; //배열 선언
       for(var i=$scope.pager.startPageNo; i<=$scope.pager.endPageNo; i++){
         $scope.pageRange.push(i);
@@ -73,19 +75,9 @@ angular.module("app")
         });
     };
 
-
-  $scope.categoryList = ["전체", "배송 문의", "주문/결제 문의", "상품 문의", "답변 대기", "답변 완료"];
-  $scope.categoryVal2 = "전체";
-  // $scope.getCategoryVal = (categoryVal) => {
-  //   if(categoryVal === "전체" || categoryVal === ""){
-  //     return $scope.categoryVal = "";
-  //   } else { 
-  //     return $scope.categoryVal = categoryVal;
-  //   }
-  // };
-
-  $scope.search = (categoryVal2) => {
-    $scope.categoryVal =categoryVal2;
-    $scope.getList(1, categoryVal2);
+  $scope.search = (searchCategory) => {
+    $scope.categoryVal =searchCategory;
+    $scope.searchCategory = searchCategory;
+    $scope.getList(1, searchCategory);
   }
 });
