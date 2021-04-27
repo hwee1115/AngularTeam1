@@ -6,7 +6,7 @@
       color: #37b24d;
     }
     .redbackground{
-        background-color: red;
+        color: red;
     }
     a { 
       color: black; text-decoration: none;
@@ -47,14 +47,16 @@
                     <th>삭제버튼</th>
             </tr>
           </thead>
-          <tr ng-repeat="product in products" ng-class="{'redbackground' : (product.p_stock == 0)}">
+          <tr ng-repeat="product in products">
             <td>{{product.p_id}}</td>
             <td><a ng-click="read(product.p_id)" href="">{{product.p_name}}</a></td>
             <td>{{product.p_category_name}}</td>
             <td>{{product.p_price}}</td>
-            <td>{{product.p_stock}}</td>
-            <td style="border: none;"><div class="btn btn-primary btn-sm" ng-click="updateProductForm(product.p_id)">수정</div></td>
-            <td style="border: none;"><div class="btn btn-danger btn-sm" ng-click="deleteProduct(product.p_id)">삭제</div></td>
+
+            <td ng-show="product.p_stock == 0" ng-class="{'redbackground' : (product.p_stock == 0)}">재고부족</td>
+            <td ng-hide="product.p_stock == 0">{{product.p_stock}}</td>
+            <td style="border: none;"><div class="btn btn-outline-primary btn-sm" ng-click="updateProductForm(product.p_id)">수정</div></td>
+            <td style="border: none;"><div class="btn btn-outline-danger btn-sm" ng-click="deleteProduct(product.p_id)">삭제</div></td>
         </tr>
           </table>
           <div style="margin-top: 20px; text-align: center;">

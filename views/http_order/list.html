@@ -1,4 +1,11 @@
-
+<style>
+  .fail-class{
+    color: rgb(220, 53, 69);
+  }
+  .success-class{
+    color: rgb(0, 123, 255);
+  }
+</style>
     <div class="card-body">
         <div>
             <div class="mb-3 searchBar">
@@ -7,8 +14,8 @@
                     <option ng-repeat="dstatus in dstatusList">{{dstatus}}</option>
                 </select>
                 <input type="text" placeholder="사용자 이름" onfocus="this.placeholder=''" ng-value="searchword" ng-model="searchword" />
-                <button class="btn btn-outline-info btn-sm ml-1" ng-click="searchList(searchword,dstatus)">검색</button>
-                <button class="btn btn-outline-info btn-sm" ng-click="searchList('',null)">전체목록</button>  
+                <button class="btn btn-outline-dark btn-sm ml-1" ng-click="searchList(searchword,dstatus)">검색</button>
+                <button class="btn btn-outline-dark btn-sm" ng-click="searchList('',null)">전체목록</button>  
                 </div>
                 <div>
                     <span style="color: red;">{{count}}</span>개의 주문리스트
@@ -25,19 +32,20 @@
                         <th>주문가격</th>
                         <th>주문수량</th>
                         <th>주문상태</th>
+                        <th></th>
                         
                     
                     </tr>
                     <tr ng-repeat="order in orders"  style="text-align: center;">
-                        <td><a ng-click="read(order.order_id,keyword,searchStatus)" href="">{{order.order_id}}</a></td>
+                        <td><a ng-click="read(order.order_id,keyword,searchStatus)">{{order.order_id}}</a></td>
                         <td>{{order.order_name}}</td>
                         <td>{{order.order_date | date:"yyyy.MM.dd"}}</td>
                         <td>{{order.total_price}}원</td>
                         <td>{{order.total_amount}}</td>
-                        <td>{{order.delivery_status}}
-                            <button  class="btn btn-outline-danger btn-sm" ng-show="order.delivery_status==='취소 중'" ng-click=deleteOrders(order,keyword,searchStatus)>주문 취소</button>
-                            <button  class="btn btn-outline-primary btn-sm" ng-show="order.delivery_status==='배송준비중'" ng-click=completeOrders(order,keyword,searchStatus)>배송 완료</button>
-                        </td>
+                        <td ng-class="{'fail-class': order.delivery_status==='취소 중'}">{{order.delivery_status}}</td> 
+                        <td>
+                        <button  class="btn btn-outline-danger btn-sm" ng-show="order.delivery_status==='취소 중'" ng-click=deleteOrders(order,keyword,searchStatus)>주문 취소</button>
+                        <button  class="btn btn-outline-primary btn-sm" ng-show="order.delivery_status==='배송준비중'" ng-click=completeOrders(order,keyword,searchStatus)>배송 완료</button> </td>
                         
                     </tr>
                 </thead>

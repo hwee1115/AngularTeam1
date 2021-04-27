@@ -48,19 +48,25 @@ angular.module("app",["ngRoute"])
             ProductsService.GetCountSort("재고부족")
             .then((response)=>{
             $scope.pcount = response.data;
-            })
+            });
 
             OrdersService.getcount()
             .then((response)=>{
                 $scope.rcount = response.data;
                 console.log(response.data);
-            })
+            });
 
             QnaService.readwait()
             .then((response) => {
                 $scope.waitcount = response.data;
                 console.log(response.data);
-            })
+            });
+
+            UsersService.getcount()
+            .then((response)=>{
+                $rootScope.ucount = response.data;
+                console.log(response.data);
+            });
 
           });
 
