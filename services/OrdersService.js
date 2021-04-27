@@ -23,6 +23,9 @@ angular.module("app")
             delete:function(order_id){
                 const promise = $http.delete(BASE_URL + "/" + order_id);
                 return promise;
-            }
+            },
+            GetPhoto:function(photoCategory,photo_sname, photo_type){
+                return "http://localhost:8080/resource/GetPhoto/"+photoCategory+"/"+photo_sname+"/"+photo_type;
+            },
         }
     });
