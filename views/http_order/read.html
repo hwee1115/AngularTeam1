@@ -109,7 +109,8 @@
                                       <tbody>
                                           
                                           <tr ng-repeat="orderProduct in orderProducts">
-                                            <td style="border-top:none; border-right:none; border-bottom:1px solid;"> 
+                                            <td style="border-top:none; border-right:none; border-bottom:1px solid;">
+                                              <img src="{{GetPhoto('Main',orderProduct.photo_sname,orderProduct.photo_type)}}" width="20%" style="float: left; margin-right: 10px;"/> 
                                                   <div style="font-size: 15px; font-weight: 700;">상품번호: {{orderProduct.p_id}}</div>
                                                   <div style="font-size: 15px; font-weight: 700;">상품이름: {{orderProduct.p_name}}</div>
                                                   <div style="font-size: 13px; font-weight: bold; ">가격: {{orderProduct.p_price}}원</div> 

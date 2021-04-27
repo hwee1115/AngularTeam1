@@ -2,7 +2,7 @@ angular.module("app")
   .controller("OrderController", function ($scope,OrdersService,$rootScope,$route) {
     $scope.show = true;
     $scope.pageShow=true;
-    $scope.keyword="";
+    $scope.keyword=null;
     $scope.searchStatus=null;
     $scope.dstatusList = ['전체','배송준비중','배송완료','취소 중','취소완료'];
     $scope.dstatus='전체';
@@ -104,6 +104,10 @@ $scope.deleteOrders = (order,keyword,searchStatus) =>{
         });
     };
 
+    $scope.GetPhoto = (photoCategory,photo_sname, photo_type) => {
+      return OrdersService.GetPhoto(photoCategory,photo_sname, photo_type);
+  };
+
   $scope.searchList = (searchword,dstatus) =>{
     $scope.keyword = searchword;
     $scope.searchStatus = dstatus;
@@ -119,7 +123,5 @@ $scope.deleteOrders = (order,keyword,searchStatus) =>{
       $scope.getList($scope.pager.pageNo,keyword,searchStatus);
     });
   }
-
- 
    
 });
