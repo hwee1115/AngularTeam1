@@ -26,7 +26,6 @@
 
     <table class="table">
         <thead class="thead-light">
-
             <tr style="text-align: center;">
                 <th>리뷰번호</th>
                 <th>리뷰점수</th>
@@ -34,8 +33,9 @@
                 <th>리뷰내용</th>
                 <th>리뷰날짜</th>
                 <th>작성자아이디</th>
+                
             </tr>
-            <tr ng-repeat="review in reviews | filter: {review_score:getReviewScoreVal()} ">
+            <tr ng-repeat="review in reviews | filter: {review_content:getSearchVal()} ">
                 <td>{{review.review_id}}</a></td>
                 <td>{{review.review_score}}/5</td>
                 <td><a ng-click="read(review.review_id)" href="">{{review.review_title}}</td>
@@ -47,21 +47,18 @@
     </table>
     <div class="card">
         <div style="margin-top: 20px; text-align: center;">
-            <button class="btn btn-light btn-sm" ng-click="getListByFilter(1,review_scoreVal)">처음</button>
+            <button class="btn btn-light btn-sm" ng-click="getListBySearch(1, searchVal, searchContent)">처음</button>
             <button class="btn btn-light btn-sm" ng-show="pager.groupNo>1"
-                ng-click="getListByFilter(pager.startPageNo-1,review_scoreVal)">이전</button>
+                ng-click="getListBySearch(pager.startPageNo-1, searchVal, searchContent)">이전</button>
             <button ng-repeat="i in pageRange"
                 class="btn btn-sm {{(pager.pageNo==i)?'btn-danger':'btn-light'}} {{!$last?'mr-1':''}}"
-                ng-click="getListByFilter(i,review_scoreVal)">{{i}}</button>
+                ng-click="getListBySearch(i, searchVal, searchContent)">{{i}}</button>
             <button class="btn btn-light btn-sm" ng-show="pager.groupNo < pager.totalGroupNo"
-                ng-click="getListByFilter(pager.endPageNo+1,review_scoreVal)">다음</button>
+                ng-click="getListBySearch(pager.endPageNo+1, searchVal, searchContent)">다음</button>
             <button class="btn btn-light btn-sm"
-                ng-click="getListByFilter(pager.totalPageNo,review_scoreVal)">맨끝</button>
+                ng-click="getListBySearch(pager.totalPageNo, searchVal, searchContent)">맨끝</button>
         </div>
     </div>
-
-
-
 
 
 </div>

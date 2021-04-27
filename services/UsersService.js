@@ -25,6 +25,11 @@ angular.module("app")
       delete: function(user_id) {
         const promise = $http.delete(BASE_URL + "/" + user_id);
         return promise;
+      },
+
+      getcount:function(){
+          const promise = $http.get(BASE_URL + "/usercount");
+          return promise;
       }
 
     }
