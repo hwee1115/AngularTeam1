@@ -30,7 +30,7 @@ angular.module("app",["ngRoute"])
     })
 
     //중첩된 컨트롤러 범위에서 사용할 수 있는 상태 데이터 및 함수
-    .controller("mainController", function($rootScope,$scope,$location,$route,ProductsService,OrdersService,QnaService){
+    .controller("mainController", function($rootScope,$scope,$location,$route,ProductsService,OrdersService,QnaService,UsersService){
         console.log("Ddd")
         $scope.logout = () =>{
             $rootScope.uid="";

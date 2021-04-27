@@ -110,6 +110,16 @@ $scope.deleteOrders = (order,keyword,searchStatus) =>{
     $scope.getList(1,searchword,dstatus);
   }
 
+  $scope.delete = (order_id,keyword,searchStatus)=>{
+    $scope.keyword = keyword;
+    $scope.searchStatus=searchStatus;
+    console.log(order_id);
+    OrdersService.delete(order_id)
+    .then((response)=>{
+      $scope.getList($scope.pager.pageNo,keyword,searchStatus);
+    });
+  }
+
  
    
 });
