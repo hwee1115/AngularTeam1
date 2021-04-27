@@ -8,9 +8,7 @@ angular.module("app")
         const promise = $http.post(BASE_URL + "/login", user) // auth컨트롤러에서 postmapping 방식이였으므로
         return promise;
       },
-      list: function(pageNo=1,keyword) { 
-        console.log("serpageno : ",pageNo)
-        console.log("serkeyword", keyword)       
+      list: function(pageNo=1,keyword) {        
         const promise = $http.get(BASE_URL + "/keywordlist", {params:{pageNo,keyword}}); // 비동기처리해야하므로 promise를 리턴해야
         return promise;
       },

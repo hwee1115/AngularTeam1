@@ -42,9 +42,7 @@ angular.module("app")
 
     //한번은 자동적으로 나와야합니다.
 
-    $scope.getList = (pageNo, keyword) => {   
-      console.log("pageno : ",pageNo)
-      console.log("keyword", keyword)   
+    $scope.getList = (pageNo, keyword) => {    
       UsersService.list(pageNo, keyword)
       // promise를 리턴하므로 then 사용가능
         .then((response) => {          
@@ -60,10 +58,12 @@ angular.module("app")
         });
     };
 
-    $scope.read = (user_id) => {
+    $scope.read = (user_id,keyword) => {
+      $scope.keyword = keyword;
       UsersService.read(user_id)
       .then((response) => {
         $scope.user = response.data;
+        console.log(response.data);
         $scope.view = "read";
       });
     };
@@ -109,4 +109,10 @@ angular.module("app")
           })
       } 
     };
+
+    $scope.searchList = (searchword) => {
+      $scope.keyword = searchword;
+      $scope.getList(1,searchword);
+    }
+    
   });
