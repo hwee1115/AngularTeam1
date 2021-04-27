@@ -23,6 +23,11 @@ angular.module("app")
       update: function(user) {
         const promise = $http.put(BASE_URL, user); 
         return promise;
+      },
+      
+      getcount:function(){
+          const promise = $http.get(BASE_URL + "/usercount");
+          return promise;
       }
     }
   });

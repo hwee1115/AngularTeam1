@@ -16,6 +16,14 @@ angular.module("app")
                 return promise;
             },
 
+            listBySearch: function(pageNo=1, searchType, searchContent){
+                const promise=$http.get(BASE_URL + "/search" ,{params:{pageNo, searchType, searchContent}});
+                console.log("searchType:" + searchType)
+                console.log("searchContent:" + searchContent)
+                console.log("promise:" + promise)
+                return promise;
+            },
+
             read: function(review_id) {
                 const promise = $http.get(BASE_URL + "/" + review_id); //** 
                 return promise;
