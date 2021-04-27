@@ -19,6 +19,10 @@ angular.module("app")
             getcount:function(){
                 const promise = $http.get(BASE_URL + "/" + "ordercount");
                 return promise;
+            },
+            delete:function(order_id){
+                const promise = $http.delete(BASE_URL + "/" + order_id);
+                return promise;
             }
         }
     });

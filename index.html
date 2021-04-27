@@ -90,19 +90,25 @@
         <div class="inner">
             <div class="head-container">
                 <div class="head-brand">
-                  <a href="/#!/views/main/home.html">
+                  <a href="/#!/">
                     <img src="./resources/img/logo7.png" alt="logo">
                   </a>
+                </div>
+                <div  class="d-flex justify-content-end">
+                <div>
+                    <div ng-show="uid">
+                        <a class="btn btn-dark btn-sm ml-2" href="/#!/">메인으로</a>
+                    </div>
                 </div>
                 <div>
                     <div ng-show="!uid">
                         <a class="btn btn-danger btn-sm" href="/#!/auth/login">로그인</a>
                     </div>
                     <div ng-show="uid">
-                        ID: {{uid}} <button class="btn btn-danger btn-sm ml-2" ng-click="logout()">로그아웃</button>
+                        <button class="btn btn-danger btn-sm ml-2" ng-click="logout()">로그아웃</button>
                     </div>
                 </div>
-
+            </div>
         </div>
     </header>
 

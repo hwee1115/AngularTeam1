@@ -119,12 +119,6 @@ section{
         flex:5;
     }
     
-    .btn-secondary{
-        flex:0.4;
-        background-color: #FF3357;
-        border-color: #FF3357;
-    } 
-    
     .div1{
         display: flex;
         margin-bottom: 50px;

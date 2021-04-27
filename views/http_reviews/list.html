@@ -37,7 +37,7 @@
                 <th>리뷰날짜</th>
                 <th>작성자아이디</th>
             </tr>
-            <tr ng-repeat="review in reviews">
+            <tr ng-repeat="review in reviews" style="text-align: center;">
                 <td>{{review.review_id}}</a></td>
                 <td>{{review.review_score}}/5</td>
                 <td><a ng-click="read(review.review_id)" href="">{{review.review_title}}</td>
@@ -47,7 +47,7 @@
             </tr>
         </thead>
     </table>
-        <div class="card">
+    
             <div style="margin-top: 20px; text-align: center;">
                 <button class="btn btn-light btn-sm" ng-click="getList(1)">처음</button>
                 <button class="btn btn-light btn-sm" ng-show="pager.groupNo>1"
@@ -59,6 +59,5 @@
                     ng-click="getList(pager.endPageNo+1)">다음</button>
                 <button class="btn btn-light btn-sm" ng-click="getList(pager.totalPageNo)">맨끝</button>
             </div>
-        </div>
 </div>
 </div>
