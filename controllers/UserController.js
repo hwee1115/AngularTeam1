@@ -58,8 +58,7 @@ angular.module("app")
         });
     };
 
-    $scope.read = (user_id,keyword) => {
-      $scope.keyword = keyword;
+    $scope.read = (user_id) => {
       UsersService.read(user_id)
       .then((response) => {
         $scope.user = response.data;
@@ -100,18 +99,17 @@ angular.module("app")
 
     $scope.updateUser = (user) => {
       if(user.user_id && user.user_name && user.user_phone && user.dog_size) { // product, bwriter는 이미 있으므로
-        
         UsersService.update(user)
           .then((response) => {
             //$scope.getList($scope.pager.pageNo);
             $scope.read(user.user_id);
-            $scope.view = "list";
           })
       } 
     };
 
     $scope.searchList = (searchword) => {
       $scope.keyword = searchword;
+      $scope.searchword=searchword;
       $scope.getList(1,searchword);
     }
     

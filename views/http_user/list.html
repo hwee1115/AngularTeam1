@@ -20,7 +20,7 @@
           </tr>
           <tr ng-repeat="user in userlist" style="text-align: center;">
               <td>{{user.user_id}}</td>
-              <td><a ng-click="read(user.user_id, keyword, searchStatus)" href="">{{user.user_name}}</a></td>
+              <td><a ng-click="read(user.user_id)" href="">{{user.user_name}}</a></td>
               <td>{{user.user_phone}}</td>
               <td>
                 <button class="btn btn-outline-primary btn-sm" ng-If="user.enabled == 1">회원</button>
