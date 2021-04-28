@@ -15,7 +15,7 @@
                 </select>
                 <input type="text" placeholder="사용자 이름" onfocus="this.placeholder=''" ng-value="searchword" ng-model="searchword" />
                 <button class="btn btn-outline-dark btn-sm ml-1" ng-click="searchList(searchword,dstatus)">검색</button>
-                <button class="btn btn-outline-dark btn-sm" ng-click="searchList('',null)">전체목록</button>  
+                <button class="btn btn-outline-dark btn-sm" ng-click="searchList(null,'전체')">전체목록</button>  
                 </div>
                 <div>
                     <span style="color: red;">{{count}}</span>개의 주문리스트
@@ -37,15 +37,15 @@
                     
                     </tr>
                     <tr ng-repeat="order in orders"  style="text-align: center;">
-                        <td><a ng-click="read(order.order_id,keyword,searchStatus)">{{order.order_id}}</a></td>
+                        <td><a ng-click="read(order.order_id)">{{order.order_id}}</a></td>
                         <td>{{order.order_name}}</td>
                         <td>{{order.order_date | date:"yyyy.MM.dd"}}</td>
                         <td>{{order.total_price}}원</td>
                         <td>{{order.total_amount}}</td>
                         <td ng-class="{'fail-class': order.delivery_status==='취소 중'}">{{order.delivery_status}}</td> 
                         <td>
-                        <button  class="btn btn-outline-danger btn-sm" ng-show="order.delivery_status==='취소 중'" ng-click=deleteOrders(order,keyword,searchStatus)>주문 취소</button>
-                        <button  class="btn btn-outline-primary btn-sm" ng-show="order.delivery_status==='배송준비중'" ng-click=completeOrders(order,keyword,searchStatus)>배송 완료</button> </td>
+                        <button  class="btn btn-outline-danger btn-sm" ng-show="order.delivery_status==='취소 중'" ng-click=deleteOrders(order)>주문 취소</button>
+                        <button  class="btn btn-outline-primary btn-sm" ng-show="order.delivery_status==='배송준비중'" ng-click=completeOrders(order)>배송 완료</button> </td>
                         
                     </tr>
                 </thead>
@@ -53,18 +53,18 @@
                 <div ng-if="pageShow" style="margin-top: 20px; text-align: center;">
 
                     <button class="btn btn-light btn-sm"
-                                ng-click="getList(1,keyword,searchStatus)"><<</button> 
+                                ng-click="getList(1)"><<</button> 
                     <button class="btn btn-light btn-sm"
                                 ng-show="pager.groupNo>1" 
-                                ng-click="getList(pager.startPageNo-1,keyword,searchStatus)">이전</button>
+                                ng-click="getList(pager.startPageNo-1)">이전</button>
                     <button ng-repeat="i in pageRange"
                                 class="btn btn-sm {{(pager.pageNo==i)?'btn-danger':'btn-light'}} {{!$last?'mr-1':''}}" 
-                                ng-click="getList(i,keyword,searchStatus)">{{i}}</button>
+                                ng-click="getList(i)">{{i}}</button>
                     <button class="btn btn-light btn-sm" 
                                 ng-show="pager.groupNo < pager.totalGroupNo" 
-                                ng-click="getList(pager.endPageNo+1,keyword,searchStatus)">다음</button>
+                                ng-click="getList(pager.endPageNo+1)">다음</button>
                     <button class="btn btn-light btn-sm" 
-                                ng-click="getList(pager.totalPageNo,keyword,searchStatus)">>></button>
+                                ng-click="getList(pager.totalPageNo)">>></button>
                 </div>
                 <span ng-if="!pageShow">검색 결과가 없습니다.</span>
           </div>
