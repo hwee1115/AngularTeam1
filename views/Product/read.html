@@ -33,7 +33,7 @@
 
                     <tr>
                         <th>사이즈</th>
-                        <td><span ng-repeat="size in sizelist">
+                        <td><span ng-repeat="size in sizelist  | orderBy: reverse:true">
                             {{size.p_size}}
                         </span></td>
                     </tr>

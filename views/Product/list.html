@@ -53,7 +53,7 @@
             <td>{{product.p_category_name}}</td>
             <td>{{product.p_price}}</td>
 
-            <td ng-show="product.p_stock == 0" ng-class="{'redbackground' : (product.p_stock == 0)}">재고부족</td>
+            <td ng-show="product.p_stock == 0" class="redbackground">재고부족</td>
             <td ng-hide="product.p_stock == 0">{{product.p_stock}}</td>
             <td style="border: none;"><div class="btn btn-outline-primary btn-sm" ng-click="updateProductForm(product.p_id)">수정</div></td>
             <td style="border: none;"><div class="btn btn-outline-danger btn-sm" ng-click="deleteProduct(product.p_id)">삭제</div></td>
