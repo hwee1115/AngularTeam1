@@ -1,6 +1,6 @@
 angular.module("app")
 .config(function($routeProvider) {
-     console.log("app-config callback(ROUTE)");
+    
      
  $routeProvider
  .when("/", {templateUrl: "views/main/home.html"})

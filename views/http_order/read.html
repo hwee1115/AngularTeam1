@@ -29,8 +29,8 @@
                                           <dt class="info-detail">배송상태</dt>
                                           <dd class="data-name" ng-show="show">{{order.delivery_status}}
                                           <button type="button" ng-click="toggle()" class="btn btn-light btn-sm ml-3">수정</button></dd>
-                                          <dd class="data-name" ng-show="!show">
-                                           
+                  
+                                          <dd class="data-name" ng-show="!show">                         
                                               <input name="status" type="radio" value="배송준비중" ng-model="status" ng-required="!status"/>배송준비중
                                               <input name="status" type="radio" value="배송완료"  ng-model="status" ng-required="!status"/>배송완료
                                               <input name="status" type="radio" value="취소 중"  ng-model="status" ng-required="!status"/>취소 중
@@ -129,7 +129,7 @@
                        
                       
                         <button type="button" ng-click="getList(pager.pageNo)" class="btn btn-primary btn-lg" style="background-color: #FF3357; border-color: black;">주문리스트 이동</button>
-                        <button type="button" ng-click="delete(order.order_id)" class="btn btn-primary btn-lg" style="background-color: #FF3357; border-color: black;">주문삭제</button>
+                        <button type="button" ng-show="order.delivery_status==='취소완료'" ng-click="delete(order.order_id)" class="btn btn-primary btn-lg" style="background-color: #FF3357; border-color: black;">주문삭제</button>
 
                     </div>
                         
