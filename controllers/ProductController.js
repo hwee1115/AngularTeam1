@@ -1,7 +1,7 @@
 angular.module("app")
   .controller("ProductController", function ($scope,ProductsService,$rootScope) {
      $scope.$on("$routeChangeSuccess", () => {
-        $scope.getList(1,$scope.optionVal);
+        $scope.getList(1,$scope.optionValue);
     });
    
     $scope.view="list";
@@ -14,9 +14,10 @@ angular.module("app")
       }
   };
 
-  $scope.optionList = ["등록순","재고순"];
-  $scope.optionVal = "등록순";
+  $scope.optionList = ["번호순","재고순"];
+  $scope.optionVal = "번호순";
   $scope.search = (optionVal) =>{
+      $scope.optionValue = optionVal;
         $scope.getList($scope.pager.pageNo,optionVal);    
   }
 
@@ -50,18 +51,8 @@ angular.module("app")
         });
 };
 
-$scope.createProduct = (product) => {
-  if(product && product.name && product.description&& product.category&&product.price){
-      ProductsService.create(product)
-          .then((response) => {
-              $scope.getList(1,$scope.optionVal);
-              $scope.view = "list";
-          });
-  }
-};
-
 $scope.cancel = () => {
-  $scope.getList($scope.pager.pageNo,$scope.optionVal);
+  $scope.getList($scope.pager.pageNo,$scope.optionValue);
   $scope.view = "list";
 };
 
@@ -131,10 +122,6 @@ $scope.updateProductForm = (pid) =>{
       });
 };
 
-$scope.MainChange=()=>{
-    var mainphoto = $("#pmainphoto")[0].files[0];
-
-}
 
 $scope.updateProduct = (product) =>{
     console.log(product);
@@ -232,12 +219,13 @@ $scope.createProduct = (product) => {
         
         formData.append("p_stock", product.p_stock);
 
-        formData.append("p_size", $scope.size.S);
-        formData.append("p_size", $scope.size.M);
-        formData.append("p_size", $scope.size.L);
-        formData.append("p_size", $scope.size.XL);
+
         formData.append("p_size", $scope.size.doubleXL);
-        
+        formData.append("p_size", $scope.size.XL);
+        formData.append("p_size", $scope.size.L);
+        formData.append("p_size", $scope.size.M);
+        formData.append("p_size", $scope.size.S);
+
         var mainphoto = $("#pmainphoto")[0].files[0];
         console.log(mainphoto);
         if(mainphoto){
@@ -256,7 +244,7 @@ $scope.createProduct = (product) => {
         }
         ProductsService.create(formData)
             .then((response) => {
-                $scope.getList(1,$scope.optionVal);
+                $scope.getList(1,$scope.optionValue);
                 $scope.view = "list";
             });
     }
@@ -264,7 +252,7 @@ $scope.createProduct = (product) => {
 $scope.deleteProduct = (pid) =>{
   ProductsService.delete(pid)
   .then((response)=>{
-    $scope.getList($scope.pager.pageNo, $scope.optionVal);
+    $scope.getList($scope.pager.pageNo, $scope.optionValue);
     $scope.view = "list";
   })
 }
