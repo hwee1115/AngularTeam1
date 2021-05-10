@@ -4,7 +4,7 @@ angular.module("app")
         const BASE_URL = "http://localhost:8080/products";
         //서비스 객체를 리턴
         return {
-            list: function(pageNo=1, optionVal="등록순"){
+            list: function(pageNo=1, optionVal="번호순"){
                 const promise=$http.get(BASE_URL,{params:{pageNo:pageNo,optionVal:optionVal}});
                 return promise;
             },
