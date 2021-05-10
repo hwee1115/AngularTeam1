@@ -14,8 +14,8 @@ angular.module("app")
       }
   };
 
-  $scope.optionList = ["등록순","재고순"];
-  $scope.optionVal = "등록순";
+  $scope.optionList = ["번호순","재고순"];
+  $scope.optionVal = "번호순";
   $scope.search = (optionVal) =>{
       $scope.optionValue = optionVal;
         $scope.getList($scope.pager.pageNo,optionVal);    
@@ -122,10 +122,6 @@ $scope.updateProductForm = (pid) =>{
       });
 };
 
-$scope.MainChange=()=>{
-    var mainphoto = $("#pmainphoto")[0].files[0];
-
-}
 
 $scope.updateProduct = (product) =>{
     console.log(product);
@@ -223,12 +219,13 @@ $scope.createProduct = (product) => {
         
         formData.append("p_stock", product.p_stock);
 
-        formData.append("p_size", $scope.size.S);
-        formData.append("p_size", $scope.size.M);
-        formData.append("p_size", $scope.size.L);
-        formData.append("p_size", $scope.size.XL);
+
         formData.append("p_size", $scope.size.doubleXL);
-        
+        formData.append("p_size", $scope.size.XL);
+        formData.append("p_size", $scope.size.L);
+        formData.append("p_size", $scope.size.M);
+        formData.append("p_size", $scope.size.S);
+
         var mainphoto = $("#pmainphoto")[0].files[0];
         console.log(mainphoto);
         if(mainphoto){

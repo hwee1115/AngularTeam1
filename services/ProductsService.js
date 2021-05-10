@@ -12,7 +12,6 @@ angular.module("app")
                 const promise = $http.get(BASE_URL + "/" + pid);
                 return promise;
             },
-
             create:function(formData){
                 const promise = $http.post(BASE_URL,formData,{headers:{"Content-Type":undefined}});
                 return promise;

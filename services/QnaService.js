@@ -4,8 +4,9 @@ angular.module("app")
     const BASE_URL = "http://localhost:8080/qna";
     //서비스 객체 리턴
     return {
-      list: function(pageNo=1, qa_category) { 
-        const promise = $http.get(BASE_URL, {params:{pageNo, qa_category}}); 
+      list: function(pageNo=1, qa_category, keyword) { 
+        console.log(keyword);
+        const promise = $http.get(BASE_URL, {params:{pageNo, qa_category, keyword}}); 
         return promise;
       },
       read: function(qa_id) {
