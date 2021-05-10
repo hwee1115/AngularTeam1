@@ -36,7 +36,7 @@
                                               <input name="status" type="radio" value="취소 중"  ng-model="status" ng-required="!status"/>취소 중
                                               <input name="status" type="radio" value="취소완료"  ng-model="status" ng-required="!status"/>취소완료
                                             
-                                            <button type="button" ng-click="changeStatus(order,status,keyword,searchStatus)" class="btn btn-light btn-sm ml-3">저장</button></dd>
+                                            <button type="button" ng-click="changeStatus(order,status)" class="btn btn-light btn-sm ml-3">저장</button></dd>
                                       </dl>
                                     </div>
                                 </div>
@@ -109,7 +109,8 @@
                                       <tbody>
                                           
                                           <tr ng-repeat="orderProduct in orderProducts">
-                                            <td style="border-top:none; border-right:none; border-bottom:1px solid;"> 
+                                            <td style="border-top:none; border-right:none; border-bottom:1px solid;">
+                                              <img src="{{GetPhoto('Main',orderProduct.photo_sname,orderProduct.photo_type)}}" width="20%" style="float: left; margin-right: 10px;"/> 
                                                   <div style="font-size: 15px; font-weight: 700;">상품번호: {{orderProduct.p_id}}</div>
                                                   <div style="font-size: 15px; font-weight: 700;">상품이름: {{orderProduct.p_name}}</div>
                                                   <div style="font-size: 13px; font-weight: bold; ">가격: {{orderProduct.p_price}}원</div> 
@@ -127,8 +128,8 @@
                       <div style="text-align: center;">
                        
                       
-                        <button type="button" ng-click="getList(pager.pageNo,keyword,searchStatus)" class="btn btn-primary btn-lg" style="background-color: #FF3357; border-color: black;">주문리스트 이동</button>
-                        <button type="button" ng-click="delete(order.order_id,keyword,searchStatus)" class="btn btn-primary btn-lg" style="background-color: #FF3357; border-color: black;">주문삭제</button>
+                        <button type="button" ng-click="getList(pager.pageNo)" class="btn btn-primary btn-lg" style="background-color: #FF3357; border-color: black;">주문리스트 이동</button>
+                        <button type="button" ng-click="delete(order.order_id)" class="btn btn-primary btn-lg" style="background-color: #FF3357; border-color: black;">주문삭제</button>
 
                     </div>
                         

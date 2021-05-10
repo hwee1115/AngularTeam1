@@ -1,58 +1,79 @@
 <div class="card">
     <div class="card-header">
-        {{product.p_name}} - {{product.p_category_name}}
+        상품
     </div>
     <div class="card-body">
-        <div>
-            <div class="form-group">
-                <label>업로드 날짜:</label>
-                <input class="form-control" ng-value="product.p_upload_date | date:'yyyy-MM-dd' " readonly/>
-            </div>
-            <div class="form-group">
-                <label>상품설명:</label>
-                <textarea class="form-control" ng-value="product.p_description" readonly></textarea>
-            </div>
-            <div class="form-group">
-                <label>상품가격:</label>
-                <input class="form-control" ng-value="product.p_price" readonly/>
-            </div>
-            <div class="form-group">
-                <label>재고수량:</label>
-                <input class="form-control" ng-value="product.p_stock" readonly/>
-            </div>
-            상품의 사이즈:
-            <span class="form-group" ng-repeat="size in sizelist">
-                {{size.p_size}}
-            </span>
-            <div class="form-group">
-                <label>메인사진:</label></br>
-                <a ng-hide="mainphoto == null" href="">
-                    {{mainphoto.photo_sname}}</br>
-                    <img src="{{GetPhoto('Main',mainphoto.photo_sname,mainphoto.photo_type)}}" width="200"/>
-                </a>
-            </div>
-        </br>
-            <div class="form-group">
-                <label>서브사진:</label>
-                <a ng-hide="subphotos.length == 0" href="">
-                    <div ng-repeat="subphoto in subphotos">
-                    {{subphoto.photo_sname}}</br>
-                    <img src="{{GetPhoto('Sub',subphoto.photo_sname,subphoto.photo_type)}}" width="200"/>
-                    </div>
-                </a>
-            </div>
-        </br>
-            <div class="form-group">
-                <label>세부사진:</label></br>
-                <a ng-hide="detailphoto == null" href="">
-                    {{detailphoto.photo_sname}}</br>
-                    <img src="{{GetPhoto('Detail',detailphoto.photo_sname,detailphoto.photo_type)}}" width="200"/>
-                </a>
-            </div>
-        </br>
-            <button class="btn btn-primary btn-sm" ng-click="getList(pager.pageNo)">목록</button>
-            <button class="btn btn-primary btn-sm" ng-show="uid" ng-click="updateProductForm(product.p_id)">수정</button> 
-            <button class="btn btn-primary btn-sm" ng-show="uid" ng-click="deleteProduct(product.p_id)">삭제</button>       
+        <div class="card">
+          
+            <div class="row">
+              <div class="col-xs-2 col-md-2"></div>
+              <div class="col-xs-8 col-md-8">
+              <br/>
+              <div class="table table-responsive">
+                  <table class="table">
+                    <tr>
+                        <th>상품이름</th>
+                        <td>{{product.p_name}}</td>
+                        <th>카테고리</th>
+                        <td>{{product.p_category_name}}</td>
+                      </tr>
+                    <tr>
+                      <th>업로드 날짜</th>
+                      <td>{{product.p_upload_date | date:'yyyy-MM-dd'}}</td>
+                      <th>상품설명</th>
+                      <td>{{product.p_description}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>상품가격</th>
+                        <td>{{product.p_price}}</td>
+                        <th>재고수량</th>
+                        <td>{{product.p_stock }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>사이즈</th>
+                        <td><span ng-repeat="size in sizelist  | orderBy: reverse:true">
+                            {{size.p_size}}
+                        </span></td>
+                    </tr>
+
+                    <tr>
+                        <th>메인사진</th>
+                        <td><a ng-hide="mainphoto == null" href="">
+                            {{mainphoto.photo_sname}}</br>
+                            <img src="{{GetPhoto('Main',mainphoto.photo_sname,mainphoto.photo_type)}}" width="200"/>
+                        </a></td>
+                    </tr>
+
+                    <tr>
+                        <th>서브사진</th>
+                        <td><a ng-hide="subphotos.length == 0" href="">
+                            <div ng-repeat="subphoto in subphotos">
+                            {{subphoto.photo_sname}}</br>
+                            <img src="{{GetPhoto('Sub',subphoto.photo_sname,subphoto.photo_type)}}" width="200"/>
+                            </div>
+                        </a></td>
+                    </tr>
+
+                    <tr>
+                        <th>디테일사진</th>
+                        <td><a ng-hide="detailphoto == null" href="">
+                            {{detailphoto.photo_sname}}</br>
+                            <img src="{{GetPhoto('Detail',detailphoto.photo_sname,detailphoto.photo_type)}}" width="200"/>
+                        </a></td>
+                    </tr>
+
+                    
+                  </table>
+                <div class="text-center">
+                    <button class="btn btn-primary btn-sm" ng-click="getList(pager.pageNo)">목록</button>
+                    <button class="btn btn-primary btn-sm" ng-show="uid" ng-click="updateProductForm(product.p_id)">수정</button> 
+                    <button class="btn btn-danger btn-sm" ng-show="uid" ng-click="deleteProduct(product.p_id)">삭제</button>       
+                </div>
+              </div>
+            </div>     
         </div>
-    </div>
-</div>
+       </div>
+       </div>     
+       </div>

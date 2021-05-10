@@ -42,15 +42,15 @@ angular.module("app")
 
     //한번은 자동적으로 나와야합니다.
 
-    $scope.getList = (pageNo) => {
-      UsersService.list(pageNo)
+    $scope.getList = (pageNo, keyword) => {    
+      UsersService.list(pageNo, keyword)
       // promise를 리턴하므로 then 사용가능
-        .then((response) => {
-          console.log(response.data);
+        .then((response) => {          
+          console.log(response);          
           $scope.pager = response.data.pager;
           $scope.userlist = response.data.users;
-          console.log($scope.userlist)
-          $scope.pageRange = [];
+       
+          $scope.pageRange = []; //배열(page의 번호들을 배열하는 과정)
           for(var i=$scope.pager.startPageNo; i<=$scope.pager.endPageNo; i++) {
             $scope.pageRange.push(i);
           }
@@ -62,9 +62,11 @@ angular.module("app")
       UsersService.read(user_id)
       .then((response) => {
         $scope.user = response.data;
+        console.log(response.data);
         $scope.view = "read";
       });
     };
+
     //화면 이동에 대해 생각해보자
     //방법1: 젤 처음에 리스트에서 생성버튼을 누르면 입력할 수 있는 form이 나와야. 
     //list.html -> write.html
@@ -97,21 +99,18 @@ angular.module("app")
 
     $scope.updateUser = (user) => {
       if(user.user_id && user.user_name && user.user_phone && user.dog_size) { // product, bwriter는 이미 있으므로
-        
         UsersService.update(user)
           .then((response) => {
             //$scope.getList($scope.pager.pageNo);
             $scope.read(user.user_id);
-            $scope.view = "list";
           })
       } 
     };
 
-    $scope.deleteUser = (user_id) => {
-      UsersService.delete(user_id)
-        .then((response) => {
-          $scope.getList(1);
-          $scope.view = "list";
-      });
-    };
+    $scope.searchList = (searchword) => {
+      $scope.keyword = searchword;
+      $scope.searchword=searchword;
+      $scope.getList(1,searchword);
+    }
+    
   });
